@@ -9,37 +9,37 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ynov.nantes.soap.entity.Author;
-import com.ynov.nantes.soap.repository.AuthorRepository;
+import com.ynov.nantes.soap.entity.User;
+import com.ynov.nantes.soap.repository.UserRepository;
 
 @RestController
 public class AuthorController {
     
-    private AuthorRepository authorRepository;
+    private UserRepository userRepository;
 
 
-    public AuthorController(AuthorRepository authorRepository) {
-        this.authorRepository = authorRepository;
+    public AuthorController(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
     
-    @GetMapping("/authors")
-    List<Author> getAuthors() {
-      return this.authorRepository.findAll();
+    @GetMapping("/users")
+    List<User> getAuthors() {
+      return this.userRepository.findAll();
     }
     
     
-    @GetMapping("/author/{id}")
-    Author getAuthorById(@PathVariable int id) {
-      return this.authorRepository.findAuteurById(id);
+    @GetMapping("/user/{email}")
+    User getAuthorById(@PathVariable String email) {
+      return this.userRepository.findAuteurByEmail(email);
     }
     
-    @PostMapping("/author")
-    Author newAuthor(@RequestBody Author auhtor) {
-      return this.authorRepository.save(auhtor);
+    @PostMapping("/user")
+    User newAuthor(@RequestBody User auhtor) {
+      return this.userRepository.save(auhtor);
     }
     
-    @DeleteMapping("/author/{id}")
+    @DeleteMapping("/user/{id}")
     void rmAuthorById(@PathVariable int id) {
-        this.authorRepository.deleteById(id);
+        this.userRepository.deleteById(id);
     }
 }

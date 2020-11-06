@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.util.Assert;
 
-import com.ynov.nantes.soap.entity.Author;
+import com.ynov.nantes.soap.entity.User;
 
 /**
  * Extension du Repository CRUD pour ajouter une méthode métier.
@@ -14,9 +14,9 @@ import com.ynov.nantes.soap.entity.Author;
  * @since 2020-10
  * @version 1.0
  */
-public interface AuthorRepository extends JpaRepository<Author, Integer> {
+public interface UserRepository extends JpaRepository<User, Integer> {
 
    /// TODO les méthodes pertinents en plus des méthodes CRUD (autogénérées), type findByName
 
-    Author findAuteurById(int id);
+    User findAuteurByEmail(String email);
 }
