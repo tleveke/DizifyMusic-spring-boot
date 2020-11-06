@@ -5,8 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.util.Assert;
 
-import com.ynov.nantes.soap.entity.Administrateur;
-import com.ynov.nantes.soap.entity.User;
+import com.ynov.nantes.soap.entity.Playlist;
 
 /**
  * Extension du Repository CRUD pour ajouter une méthode métier.
@@ -15,9 +14,9 @@ import com.ynov.nantes.soap.entity.User;
  * @since 2020-10
  * @version 1.0
  */
-public interface AdministrateurRepository extends JpaRepository<Administrateur, Integer> {
+public interface PlaylistRepository extends JpaRepository<Playlist, Integer> {
 
    /// TODO les méthodes pertinents en plus des méthodes CRUD (autogénérées), type findByName
 
-    Administrateur findAdminById(int id);
+    Playlist findPlaylistById(int id);
 }

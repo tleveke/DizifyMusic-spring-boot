@@ -23,23 +23,23 @@ public class AdministrateurController {
     }
     
     @GetMapping("/administrateurs")
-    List<Administrateur> getAuthors() {
+    List<Administrateur> getAdministrateurs() {
       return this.adminRepository.findAll();
     }
     
     
-    @GetMapping("/administrateur/{email}")
-    Administrateur getAuthorById(@PathVariable Long id) {
-      return this.adminRepository.findAuteurById(id);
+    @GetMapping("/administrateur/{id}")
+    Administrateur getAdministrateurById(@PathVariable int id) {
+      return this.adminRepository.findAdminById(id);
     }
     
     @PostMapping("/administrateur")
-    Administrateur newAuthor(@RequestBody Administrateur admin) {
+    Administrateur newAdministrateur(@RequestBody Administrateur admin) {
       return this.adminRepository.save(admin);
     }
     
     @DeleteMapping("/administrateur/{id}")
-    void rmAuthorById(@PathVariable int id) {
+    void rmAdministrateurById(@PathVariable int id) {
         this.adminRepository.deleteById(id);
     }
 }

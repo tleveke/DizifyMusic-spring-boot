@@ -23,23 +23,23 @@ public class UserController {
     }
     
     @GetMapping("/users")
-    List<User> getAuthors() {
+    List<User> getUsers() {
       return this.userRepository.findAll();
     }
     
     
     @GetMapping("/user/{email}")
-    User getAuthorById(@PathVariable String email) {
-      return this.userRepository.findAuteurByEmail(email);
+    User getUserById(@PathVariable String email) {
+      return this.userRepository.findUserByEmail(email);
     }
     
     @PostMapping("/user")
-    User newAuthor(@RequestBody User auhtor) {
-      return this.userRepository.save(auhtor);
+    User newUser(@RequestBody User user) {
+      return this.userRepository.save(user);
     }
     
     @DeleteMapping("/user/{id}")
-    void rmAuthorById(@PathVariable int id) {
+    void rmUserById(@PathVariable int id) {
         this.userRepository.deleteById(id);
     }
 }
