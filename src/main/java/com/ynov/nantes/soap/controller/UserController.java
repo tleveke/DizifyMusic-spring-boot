@@ -13,12 +13,12 @@ import com.ynov.nantes.soap.entity.User;
 import com.ynov.nantes.soap.repository.UserRepository;
 
 @RestController
-public class AuthorController {
+public class UserController {
     
     private UserRepository userRepository;
 
 
-    public AuthorController(UserRepository userRepository) {
+    public UserController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
     
