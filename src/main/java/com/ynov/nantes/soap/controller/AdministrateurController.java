@@ -29,13 +29,13 @@ public class AdministrateurController {
     
     
     @GetMapping("/administrateur/{email}")
-    Administrateur getAuthorById(@PathVariable String email) {
-      return this.adminRepository.findAuteurByEmail(email);
+    Administrateur getAuthorById(@PathVariable Long id) {
+      return this.adminRepository.findAuteurById(id);
     }
     
     @PostMapping("/administrateur")
-    Administrateur newAuthor(@RequestBody Administrateur auhtor) {
-      return this.adminRepository.save(auhtor);
+    Administrateur newAuthor(@RequestBody Administrateur admin) {
+      return this.adminRepository.save(admin);
     }
     
     @DeleteMapping("/administrateur/{id}")

@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.util.Assert;
 
 import com.ynov.nantes.soap.entity.Administrateur;
+import com.ynov.nantes.soap.entity.User;
 
 /**
  * Extension du Repository CRUD pour ajouter une méthode métier.
@@ -18,5 +19,5 @@ public interface AdministrateurRepository extends JpaRepository<Administrateur, 
 
    /// TODO les méthodes pertinents en plus des méthodes CRUD (autogénérées), type findByName
 
-    Administrateur findAuteurByEmail(String email);
+    Administrateur findAuteurById(Long id);
 }
