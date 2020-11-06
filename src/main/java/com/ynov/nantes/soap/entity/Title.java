@@ -59,7 +59,7 @@ public class Title {
     @JoinTable( name = "T_Favoris_Title",
     joinColumns = @JoinColumn( name = "idTitle" ),
     inverseJoinColumns = @JoinColumn( name = "idFavoris" ) )
-    private Set<Favoris> listTitlesFav;
+    private Set<Favoris> titles;
     
     
 
@@ -112,12 +112,12 @@ public class Title {
         this.album = album;
     }
 
-    public Set<Favoris> getListTitlesFav() {
-        return listTitlesFav;
+    public Set<Favoris> getTitles() {
+        return titles;
     }
 
-    public void setListTitlesFav(Set<Favoris> listTitlesFav) {
-        this.listTitlesFav = listTitlesFav;
+    public void setTitles(Set<Favoris> titles) {
+        this.titles = titles;
     }
     
 }

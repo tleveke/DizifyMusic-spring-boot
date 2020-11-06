@@ -48,7 +48,7 @@ public class Album {
     @JoinTable( name = "T_Favoris_Album",
     joinColumns = @JoinColumn( name = "idAlbum" ),
     inverseJoinColumns = @JoinColumn( name = "idFavoris" ) )
-    private Set<Favoris> listAlbumsFav;
+    private Set<Favoris> albums;
 
 
     public int getId() {
@@ -91,12 +91,13 @@ public class Album {
         this.artist = artist;
     }
 
-    public Set<Favoris> getListAlbumsFav() {
-        return listAlbumsFav;
+    public Set<Favoris> getAlbums() {
+        return albums;
     }
 
-    public void setListAlbumsFav(Set<Favoris> listAlbumsFav) {
-        this.listAlbumsFav = listAlbumsFav;
+    public void setAlbums(Set<Favoris> albums) {
+        this.albums = albums;
     }
+
     
 }

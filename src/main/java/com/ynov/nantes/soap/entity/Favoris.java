@@ -40,19 +40,19 @@ public class Favoris {
     @JoinTable( name = "T_Favoris_Title",
     joinColumns = @JoinColumn( name = "idFavoris" ),
     inverseJoinColumns = @JoinColumn( name = "idTitle" ) )
-    private Set<Title> listTitlesFav;
+    private Set<Title> titles;
     
     @ManyToMany
     @JoinTable( name = "T_Favoris_Album",
     joinColumns = @JoinColumn( name = "idFavoris" ),
     inverseJoinColumns = @JoinColumn( name = "idAlbum" ) )
-    private Set<Album> listAlbumsFav;
+    private Set<Album> albums;
     
     @ManyToMany
     @JoinTable( name = "T_Favoris_Artist",
     joinColumns = @JoinColumn( name = "idFavoris" ),
     inverseJoinColumns = @JoinColumn( name = "idArtist" ) )
-    private Set<Artist> listArtistsFav;
+    private Set<Artist> artists;
     
     public int getId() {
         return id;
@@ -71,11 +71,30 @@ public class Favoris {
     }
 
     public Set<Title> getTitles() {
-        return listTitlesFav;
+        return titles;
     }
 
     public void setTitles(Set<Title> titles) {
-        this.listTitlesFav = titles;
+        this.titles = titles;
     }
+
+    public Set<Album> getAlbums() {
+        return albums;
+    }
+
+    public void setAlbums(Set<Album> albums) {
+        this.albums = albums;
+    }
+
+    public Set<Artist> getArtists() {
+        return artists;
+    }
+
+    public void setArtists(Set<Artist> artists) {
+        this.artists = artists;
+    }
+    
+    
+
     
 }
