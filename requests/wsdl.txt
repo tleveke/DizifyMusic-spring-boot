@@ -1,2 +1,0 @@
-GET http://localhost:8080/ws/authors.wsdl
-GET http://localhost:8080/ws/books.wsdl
