@@ -17,12 +17,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ynov.nantes.soap.config.JwtTokenUtil;
+import com.ynov.nantes.soap.entity.User;
 import com.ynov.nantes.soap.model.JwtRequest;
 import com.ynov.nantes.soap.model.JwtResponse;
+import com.ynov.nantes.soap.repository.UserRepository;
 
 @RestController
 @CrossOrigin
 public class JwtAuthenticationController {
+    
+    private UserRepository userRepository;
+
+    public JwtAuthenticationController(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
   @Autowired
   private AuthenticationManager authenticationManager;
@@ -36,15 +44,33 @@ public class JwtAuthenticationController {
   @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
   public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest)
       throws Exception {
+      System.out.println("Yo");
+      ResponseEntity<?> response = ResponseEntity.ok("Not found");;
+      Boolean userExist = userRepository.existsByEmail(authenticationRequest.getUsername());
+      System.out.println(userExist);
+      
+      if (userExist) {
+          User user = userRepository.findUserByEmail(authenticationRequest.getUsername());
+          System.out.println(user);
+          if (user.getPassword().equals(authenticationRequest.getPassword())) {
+              System.out.println("Yop");
+              //authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
+              System.out.println("Lo");
 
-    authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
+              final UserDetails userDetails = jwtInMemoryUserDetailsService
+                  .loadUserByUsername(authenticationRequest.getUsername());
+              
 
-    final UserDetails userDetails = jwtInMemoryUserDetailsService
-        .loadUserByUsername(authenticationRequest.getUsername());
+              System.out.println("cr");
 
-    final String token = jwtTokenUtil.generateToken(userDetails);
+              final String token = jwtTokenUtil.generateToken(userDetails);
+              System.out.println("Yaaaaaaaaao");
+              
+              response = ResponseEntity.ok(new JwtResponse(token));
+          }
+      }  
 
-    return ResponseEntity.ok(new JwtResponse(token));
+    return response;
   }
 
   private void authenticate(String username, String password) throws Exception {

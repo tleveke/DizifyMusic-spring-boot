@@ -20,4 +20,5 @@ public interface AdministrateurRepository extends JpaRepository<Administrateur, 
    /// TODO les méthodes pertinents en plus des méthodes CRUD (autogénérées), type findByName
 
     Administrateur findAdminById(int id);
+    Boolean existAdminByUser(User user);
 }

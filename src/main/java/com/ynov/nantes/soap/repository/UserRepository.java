@@ -19,4 +19,5 @@ public interface UserRepository extends JpaRepository<User, Integer> {
    /// TODO les méthodes pertinents en plus des méthodes CRUD (autogénérées), type findByName
 
     User findUserByEmail(String email);
+    Boolean existsByEmail(String email);
 }

@@ -22,8 +22,12 @@ public class User {
     @Column (name = "email")
     private String email;
     
+    @Column (name = "password")
+    private String password;
+    
     @Column (name = "pseudo")
     private String pseudo;
+    
     
     @Column (name = "avatar")
     private String avatar;
@@ -50,6 +54,14 @@ public class User {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 }

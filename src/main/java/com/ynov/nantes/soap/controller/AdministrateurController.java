@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ynov.nantes.soap.entity.Administrateur;
+import com.ynov.nantes.soap.entity.User;
 import com.ynov.nantes.soap.repository.AdministrateurRepository;
 
 @RestController
@@ -36,6 +37,10 @@ public class AdministrateurController {
     @PostMapping("/administrateur")
     Administrateur newAdministrateur(@RequestBody Administrateur admin) {
       return this.adminRepository.save(admin);
+    }
+    @PostMapping("/isAdministrateur")
+    Boolean isAdministrateurByUser(@RequestBody User user) {
+      return this.adminRepository.existAdminByUser(user);
     }
     
     @DeleteMapping("/administrateur/{id}")

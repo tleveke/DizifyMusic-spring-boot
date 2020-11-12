@@ -29,7 +29,7 @@ public class UserController {
     
     
     @GetMapping("/user/{email}")
-    User getUserById(@PathVariable String email) {
+    User getUserByEmail(@PathVariable String email) {
       return this.userRepository.findUserByEmail(email);
     }
     
