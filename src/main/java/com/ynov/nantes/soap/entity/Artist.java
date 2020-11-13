@@ -35,6 +35,9 @@ public class Artist {
     
     @Column (name = "avatar")
     private String avatar;
+    
+    @Column (name = "annee")
+    private int annee;
 
 
 
@@ -60,6 +63,14 @@ public class Artist {
 
     public void setAlias(String alias) {
         this.alias = alias;
+    }
+
+    public int getAnnee() {
+        return annee;
+    }
+
+    public void setAnnee(int annee) {
+        this.annee = annee;
     }
 
 
