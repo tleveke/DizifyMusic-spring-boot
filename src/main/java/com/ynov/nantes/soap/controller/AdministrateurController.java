@@ -40,7 +40,7 @@ public class AdministrateurController {
     }
     @PostMapping("/isAdministrateur")
     Boolean isAdministrateurByUser(@RequestBody User user) {
-      return this.adminRepository.existAdminByUser(user);
+      return this.adminRepository.existsAdminByUser(user);
     }
     
     @DeleteMapping("/administrateur/{id}")

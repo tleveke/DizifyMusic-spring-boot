@@ -35,12 +35,7 @@ public class Artist {
     
     @Column (name = "avatar")
     private String avatar;
-   
-    @ManyToMany
-    @JoinTable( name = "T_Favoris_Artist",
-    joinColumns = @JoinColumn( name = "idArtist" ),
-    inverseJoinColumns = @JoinColumn( name = "idFavoris" ) )
-    private Set<Favoris> artists;
+
 
 
     public int getId() {
@@ -67,12 +62,6 @@ public class Artist {
         this.alias = alias;
     }
 
-    public Set<Favoris> getArtists() {
-        return artists;
-    }
 
-    public void setArtists(Set<Favoris> artists) {
-        this.artists = artists;
-    }
     
 }

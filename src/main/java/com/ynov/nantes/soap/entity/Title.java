@@ -49,18 +49,12 @@ public class Title {
     @JoinColumn(name = "id_album")
     private Album album;
     
-    @ManyToMany
+    /*@ManyToMany
     @JoinTable( name = "T_Playlist_Title",
     joinColumns = @JoinColumn( name = "idTitle" ),
     inverseJoinColumns = @JoinColumn( name = "idPlaylist" ) )
-    private Set<Playlist> listTitles;
-    
-    @ManyToMany
-    @JoinTable( name = "T_Favoris_Title",
-    joinColumns = @JoinColumn( name = "idTitle" ),
-    inverseJoinColumns = @JoinColumn( name = "idFavoris" ) )
-    private Set<Favoris> titles;
-    
+    private Set<Playlist> listTitles;*/
+
     
 
 
@@ -112,12 +106,4 @@ public class Title {
         this.album = album;
     }
 
-    public Set<Favoris> getTitles() {
-        return titles;
-    }
-
-    public void setTitles(Set<Favoris> titles) {
-        this.titles = titles;
-    }
-    
 }

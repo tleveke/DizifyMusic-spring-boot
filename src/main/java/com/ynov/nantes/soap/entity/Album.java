@@ -43,12 +43,7 @@ public class Album {
     @OneToOne
     @JoinColumn(name = "id_artist")
     private Artist artist;
-    
-    @ManyToMany
-    @JoinTable( name = "T_Favoris_Album",
-    joinColumns = @JoinColumn( name = "idAlbum" ),
-    inverseJoinColumns = @JoinColumn( name = "idFavoris" ) )
-    private Set<Favoris> albums;
+
 
 
     public int getId() {
@@ -89,14 +84,6 @@ public class Album {
 
     public void setArtist(Artist artist) {
         this.artist = artist;
-    }
-
-    public Set<Favoris> getAlbums() {
-        return albums;
-    }
-
-    public void setAlbums(Set<Favoris> albums) {
-        this.albums = albums;
     }
 
     

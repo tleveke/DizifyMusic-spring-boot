@@ -22,6 +22,8 @@ import com.ynov.nantes.soap.model.JwtRequest;
 import com.ynov.nantes.soap.model.JwtResponse;
 import com.ynov.nantes.soap.repository.UserRepository;
 
+import com.google.gson.Gson;
+
 @RestController
 @CrossOrigin
 public class JwtAuthenticationController {
@@ -34,6 +36,8 @@ public class JwtAuthenticationController {
 
   @Autowired
   private AuthenticationManager authenticationManager;
+  
+  private static final Gson gson = new Gson();
 
   @Autowired
   private JwtTokenUtil jwtTokenUtil;
@@ -45,7 +49,7 @@ public class JwtAuthenticationController {
   public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest)
       throws Exception {
       System.out.println("Yo");
-      ResponseEntity<?> response = ResponseEntity.ok("Not found");;
+      ResponseEntity<?> response = ResponseEntity.ok(gson.toJson("Not found"));
       Boolean userExist = userRepository.existsByEmail(authenticationRequest.getUsername());
       System.out.println(userExist);
       
