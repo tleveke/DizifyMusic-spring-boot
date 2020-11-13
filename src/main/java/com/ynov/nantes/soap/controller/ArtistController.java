@@ -45,6 +45,10 @@ public class ArtistController {
     
     @PutMapping("/artist")
     Artist editArtist(@RequestBody Artist auhtor) {
+        System.out.println(auhtor.getId());
+        System.out.println(auhtor.getAlias());
+        System.out.println(auhtor.getAvatar());
+        System.out.println(auhtor.getAnnee());
       return this.artistRepository.save(auhtor);
     }
     
