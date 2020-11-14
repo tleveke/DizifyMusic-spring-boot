@@ -6,9 +6,12 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ynov.nantes.soap.entity.Album;
+import com.ynov.nantes.soap.entity.Artist;
 import com.ynov.nantes.soap.entity.Title;
 import com.ynov.nantes.soap.repository.TitleRepository;
 
@@ -26,7 +29,12 @@ public class TitleController {
     List<Title> getTitles() {
       return this.titleRepository.findAll();
     }
+
     
+    @GetMapping("/titles/album/{id}")
+    List<Title> getTitleByAlbum(@PathVariable int id) {
+      return this.titleRepository.findTitleByAlbumId(id);
+    }
     
     @GetMapping("/title/{id}")
     Title getTitleById(@PathVariable int id) {
@@ -39,6 +47,11 @@ public class TitleController {
     
     @PostMapping("/title")
     Title newTitle(@RequestBody Title title) {
+      return this.titleRepository.save(title);
+    }
+    
+    @PutMapping("/title")
+    Title editTitle(@RequestBody Title title) {
       return this.titleRepository.save(title);
     }
     

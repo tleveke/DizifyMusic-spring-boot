@@ -12,6 +12,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
  * Entité Auteur persistente en base de données.
@@ -43,8 +46,10 @@ public class Album {
     @OneToOne
     @JoinColumn(name = "id_artist")
     private Artist artist;
-
-
+    
+    @JsonInclude()
+    @Transient
+    private int dureeTotale;
 
     public int getId() {
         return id;
@@ -84,6 +89,14 @@ public class Album {
 
     public void setArtist(Artist artist) {
         this.artist = artist;
+    }
+
+    public int getDureeTotale() {
+        return dureeTotale;
+    }
+
+    public void setDureeTotale(int dureeTotale) {
+        this.dureeTotale = dureeTotale;
     }
 
     

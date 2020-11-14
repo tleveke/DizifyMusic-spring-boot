@@ -1,10 +1,13 @@
 package com.ynov.nantes.soap.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.util.Assert;
 
+import com.ynov.nantes.soap.entity.Album;
 import com.ynov.nantes.soap.entity.Title;
 
 /**
@@ -20,4 +23,5 @@ public interface TitleRepository extends JpaRepository<Title, Integer> {
 
     Title findTitleById(int id);
     Title findTitleByDesignation(String designation);
+    List<Title> findTitleByAlbumId(int id);
 }
