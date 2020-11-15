@@ -11,6 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
  * Entité Auteur persistente en base de données.
@@ -39,7 +42,9 @@ public class Artist {
     @Column (name = "annee")
     private int annee;
 
-
+    @JsonInclude()
+    @Transient
+    private boolean favoris = false;
 
     public int getId() {
         return id;
@@ -71,6 +76,14 @@ public class Artist {
 
     public void setAnnee(int annee) {
         this.annee = annee;
+    }
+
+    public boolean isFavoris() {
+        return favoris;
+    }
+
+    public void setFavoris(boolean favoris) {
+        this.favoris = favoris;
     }
 
 

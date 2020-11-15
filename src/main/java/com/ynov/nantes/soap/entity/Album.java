@@ -50,6 +50,10 @@ public class Album {
     @JsonInclude()
     @Transient
     private int dureeTotale;
+    
+    @JsonInclude()
+    @Transient
+    private boolean favoris = false;
 
     public int getId() {
         return id;
@@ -97,6 +101,14 @@ public class Album {
 
     public void setDureeTotale(int dureeTotale) {
         this.dureeTotale = dureeTotale;
+    }
+
+    public boolean isFavoris() {
+        return favoris;
+    }
+
+    public void setFavoris(boolean favoris) {
+        this.favoris = favoris;
     }
 
     

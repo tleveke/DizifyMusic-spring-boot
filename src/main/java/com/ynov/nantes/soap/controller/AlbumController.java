@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ynov.nantes.soap.entity.Album;
+import com.ynov.nantes.soap.entity.Favoris;
 import com.ynov.nantes.soap.entity.Title;
 import com.ynov.nantes.soap.repository.AlbumRepository;
+import com.ynov.nantes.soap.repository.FavorisRepository;
 import com.ynov.nantes.soap.repository.TitleRepository;
 
 @RestController
@@ -20,11 +22,13 @@ public class AlbumController {
     
     private TitleRepository titleRepository;
     private AlbumRepository albumRepository;
+    private FavorisRepository favorisRepository;
 
 
-    public AlbumController(AlbumRepository albumRepository,TitleRepository titleRepository) {
+    public AlbumController(AlbumRepository albumRepository,TitleRepository titleRepository,FavorisRepository favorisRepository) {
         this.albumRepository = albumRepository;    
         this.titleRepository =  titleRepository;
+        this.favorisRepository =  favorisRepository;
     }
     
     @GetMapping("/albums")
@@ -37,6 +41,23 @@ public class AlbumController {
       }
         
       return albums;
+    }
+    
+    @GetMapping("/albums/{emailUser}")
+    List<Album> getAlbumsUser(@PathVariable String emailUser) {
+        
+        List<Album> albums =  this.albumRepository.findAll();
+        Favoris favoris = this.favorisRepository.findFavorisByUserEmail(emailUser);
+        
+        for (Album favori : favoris.getAlbums()) {
+            for (Album album : albums) {
+                if (album == favori) {
+                    album.setFavoris(true);
+                }
+            }
+        }
+        
+        return albums;
     }
     
     @GetMapping("/album/{id}")

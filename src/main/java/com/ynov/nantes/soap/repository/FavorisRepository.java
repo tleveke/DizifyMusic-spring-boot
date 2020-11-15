@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.util.Assert;
 
 import com.ynov.nantes.soap.entity.Favoris;
+import com.ynov.nantes.soap.entity.User;
 
 /**
  * Extension du Repository CRUD pour ajouter une méthode métier.
@@ -19,4 +20,7 @@ public interface FavorisRepository extends JpaRepository<Favoris, Integer> {
    /// TODO les méthodes pertinents en plus des méthodes CRUD (autogénérées), type findByName
 
     Favoris findFavorisById(int id);
+    Favoris findFavorisByUserEmail(String email);
+    Boolean existsFavorisByUserEmail(String email);
+
 }

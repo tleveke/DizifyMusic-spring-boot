@@ -13,6 +13,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
  * Entité Auteur persistente en base de données.
@@ -48,6 +51,10 @@ public class Title {
     @OneToOne
     @JoinColumn(name = "id_album")
     private Album album;
+    
+    @JsonInclude()
+    @Transient
+    private boolean favoris = false;
     
     /*@ManyToMany
     @JoinTable( name = "T_Playlist_Title",
@@ -104,6 +111,14 @@ public class Title {
 
     public void setAlbum(Album album) {
         this.album = album;
+    }
+
+    public boolean isFavoris() {
+        return favoris;
+    }
+
+    public void setFavoris(boolean favoris) {
+        this.favoris = favoris;
     }
 
 }

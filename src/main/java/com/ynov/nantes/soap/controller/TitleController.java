@@ -12,22 +12,43 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ynov.nantes.soap.entity.Album;
 import com.ynov.nantes.soap.entity.Artist;
+import com.ynov.nantes.soap.entity.Favoris;
 import com.ynov.nantes.soap.entity.Title;
+import com.ynov.nantes.soap.repository.FavorisRepository;
 import com.ynov.nantes.soap.repository.TitleRepository;
 
 @RestController
 public class TitleController {
     
     private TitleRepository titleRepository;
+    private FavorisRepository favorisRepository;
 
 
-    public TitleController(TitleRepository titleRepository) {
+    public TitleController(TitleRepository titleRepository,FavorisRepository favorisRepository) {
         this.titleRepository = titleRepository;
+        this.favorisRepository = favorisRepository;
     }
     
     @GetMapping("/titles")
     List<Title> getTitles() {
       return this.titleRepository.findAll();
+    }
+    
+    @GetMapping("/titles/{emailUser}")
+    List<Title> getTitlesUser(@PathVariable String emailUser) {
+        
+        List<Title> titles =  this.titleRepository.findAll();
+        Favoris favoris = this.favorisRepository.findFavorisByUserEmail(emailUser);
+        
+        for (Title favori : favoris.getTitles()) {
+            for (Title title : titles) {
+                if (title == favori) {
+                    title.setFavoris(true);
+                }
+            }
+        }
+        
+        return titles;
     }
 
     

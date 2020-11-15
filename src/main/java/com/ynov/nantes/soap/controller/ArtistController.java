@@ -10,22 +10,44 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ynov.nantes.soap.entity.Album;
 import com.ynov.nantes.soap.entity.Artist;
+import com.ynov.nantes.soap.entity.Favoris;
 import com.ynov.nantes.soap.repository.ArtistRepository;
+import com.ynov.nantes.soap.repository.FavorisRepository;
 
 @RestController
 public class ArtistController {
     
     private ArtistRepository artistRepository;
+    private FavorisRepository favorisRepository;
 
 
-    public ArtistController(ArtistRepository artistRepository) {
+    public ArtistController(ArtistRepository artistRepository,FavorisRepository favorisRepository) {
         this.artistRepository = artistRepository;
+        this.favorisRepository = favorisRepository;
     }
     
     @GetMapping("/artists")
     List<Artist> getArtists() {
       return this.artistRepository.findAll();
+    }
+    
+    @GetMapping("/artists/{emailUser}")
+    List<Artist> getAlbumsUser(@PathVariable String emailUser) {
+        
+        List<Artist> artists =  this.artistRepository.findAll();
+        Favoris favoris = this.favorisRepository.findFavorisByUserEmail(emailUser);
+        
+        for (Artist favori : favoris.getArtists()) {
+            for (Artist artist : artists) {
+                if (artist == favori) {
+                    artist.setFavoris(true);
+                }
+            }
+        }
+        
+        return artists;
     }
     
     
