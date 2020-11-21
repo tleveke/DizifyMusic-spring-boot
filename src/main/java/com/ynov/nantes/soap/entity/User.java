@@ -8,7 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.ynov.nantes.soap.config.WebSecurityConfig;
 
 /**
  * Entité Auteur persistente en base de données.
@@ -20,6 +24,14 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @Entity
 @Table(name = "user")
 public class User {
+    
+
+    @Autowired
+    @Transient
+    private WebSecurityConfig webSecurityConfig = new WebSecurityConfig();
+    
+    @Transient
+    private PasswordEncoder passwordEncoder = webSecurityConfig.passwordEncoder();
     
     @Id
     @Column (name = "email")
@@ -72,7 +84,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = passwordEncoder.encode(password);
     }
 
     public boolean isAdmin() {

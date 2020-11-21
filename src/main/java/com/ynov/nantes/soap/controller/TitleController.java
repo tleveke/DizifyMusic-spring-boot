@@ -1,6 +1,8 @@
 package com.ynov.nantes.soap.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +34,35 @@ public class TitleController {
     @GetMapping("/titles")
     List<Title> getTitles() {
       return this.titleRepository.findAll();
+    }
+    
+    @GetMapping("/titles/accueil")
+    List<Title> getTitlesAccueil() {
+      
+        List<Title>  titles =  this.titleRepository.findAll();
+        List<Title> titles_accueil = new ArrayList<Title>();
+        
+        Random rand = new Random();
+        
+        int boucle = 3;
+        
+        if (boucle > titles.size()) {
+            boucle = titles.size();
+        }
+        
+        for (int i = 0; i < boucle ; i++) {
+            int random = rand.nextInt(titles.size());
+            
+            while (titles_accueil.contains(titles.get(random))) {
+                random = rand.nextInt(titles.size());
+            }
+            
+            titles_accueil.add(titles.get(random));   
+        }
+        
+        return titles_accueil;
+        
+        //return this.titleRepository.findAll();
     }
     
     @GetMapping("/titles/{emailUser}")
