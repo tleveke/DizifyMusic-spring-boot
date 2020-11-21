@@ -1,5 +1,6 @@
 package com.ynov.nantes.soap.entity;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -56,11 +57,9 @@ public class Title {
     @Transient
     private boolean favoris = false;
     
-    /*@ManyToMany
-    @JoinTable( name = "T_Playlist_Title",
-    joinColumns = @JoinColumn( name = "idTitle" ),
-    inverseJoinColumns = @JoinColumn( name = "idPlaylist" ) )
-    private Set<Playlist> listTitles;*/
+    @JsonInclude()
+    @Transient
+    private List<Integer> listTitlesId;
 
     
 
@@ -119,6 +118,14 @@ public class Title {
 
     public void setFavoris(boolean favoris) {
         this.favoris = favoris;
+    }
+
+    public List<Integer> getListTitlesId() {
+        return listTitlesId;
+    }
+
+    public void setListTitlesId(List<Integer> listTitles) {
+        this.listTitlesId = listTitles;
     }
 
 }

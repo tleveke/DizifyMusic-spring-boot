@@ -49,14 +49,15 @@ public class AlbumController {
         List<Album> albums =  this.albumRepository.findAll();
         Favoris favoris = this.favorisRepository.findFavorisByUserEmail(emailUser);
         
-        for (Album favori : favoris.getAlbums()) {
-            for (Album album : albums) {
-                if (album == favori) {
-                    album.setFavoris(true);
-                }
-            }
-        }
-        
+        if (favoris != null) {
+          for (Album favori : favoris.getAlbums()) {
+              for (Album album : albums) {
+                  if (album == favori) {
+                      album.setFavoris(true);
+                  }
+              }
+          }
+        }     
         return albums;
     }
     

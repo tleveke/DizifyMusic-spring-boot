@@ -39,15 +39,15 @@ public class TitleController {
         
         List<Title> titles =  this.titleRepository.findAll();
         Favoris favoris = this.favorisRepository.findFavorisByUserEmail(emailUser);
-        
-        for (Title favori : favoris.getTitles()) {
-            for (Title title : titles) {
-                if (title == favori) {
-                    title.setFavoris(true);
-                }
-            }
+        if (favoris != null) {
+          for (Title favori : favoris.getTitles()) {
+              for (Title title : titles) {
+                  if (title == favori) {
+                      title.setFavoris(true);
+                  }
+              }
+          }
         }
-        
         return titles;
     }
 

@@ -39,10 +39,12 @@ public class ArtistController {
         List<Artist> artists =  this.artistRepository.findAll();
         Favoris favoris = this.favorisRepository.findFavorisByUserEmail(emailUser);
         
-        for (Artist favori : favoris.getArtists()) {
-            for (Artist artist : artists) {
-                if (artist == favori) {
-                    artist.setFavoris(true);
+        if (favoris != null) {
+            for (Artist favori : favoris.getArtists()) {
+                for (Artist artist : artists) {
+                    if (artist == favori) {
+                        artist.setFavoris(true);
+                    }
                 }
             }
         }

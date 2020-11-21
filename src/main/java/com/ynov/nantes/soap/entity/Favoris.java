@@ -2,7 +2,7 @@ package com.ynov.nantes.soap.entity;
 
 import java.util.Set;
 
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,7 +32,7 @@ public class Favoris {
     @Column(name = "id")
     private int id;
     
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "id_user")
     private User user;
     

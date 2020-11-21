@@ -32,6 +32,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
   protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
       throws ServletException, IOException {
 
+    final String requestURI = request.getRequestURI();
+    System.out.println(requestURI);
     final String requestTokenHeader = request.getHeader("Authorization");
 
     String username = null;
@@ -69,5 +71,5 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     }
     chain.doFilter(request, response);
   }
-
+//else if (requestURI == "/authenticate/signup"){
 }

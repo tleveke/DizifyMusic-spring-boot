@@ -1,5 +1,6 @@
 package com.ynov.nantes.soap.entity;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -34,6 +35,12 @@ public class Playlist {
     @Column(name = "id")
     private int id;
     
+    @Column(name = "nom")
+    private String nom;
+    
+    @Column(name = "image")
+    private String image;
+    
     @OneToOne
     @JoinColumn(name = "id_user")
     private User user;
@@ -46,7 +53,7 @@ public class Playlist {
     @JoinTable( name = "T_Playlist_Title",
     joinColumns = @JoinColumn( name = "idPlaylist" ),
     inverseJoinColumns = @JoinColumn( name = "idTitle" ) )
-    private Set<Title> listTitles;
+    private Set<Title> listTitles = new HashSet<>();
     
     public int getId() {
         return id;
@@ -70,6 +77,22 @@ public class Playlist {
 
     public void setTitles(Set<Title> titles) {
         this.listTitles = titles;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
     
 }

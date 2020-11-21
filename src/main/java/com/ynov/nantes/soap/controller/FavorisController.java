@@ -40,7 +40,22 @@ public class FavorisController {
     }
     @GetMapping("/favoris/user/{emailUser}")
     Favoris getFavorisByUser(@PathVariable String emailUser) {
-      return this.favorisRepository.findFavorisByUserEmail(emailUser);
+      
+        Favoris favoris = this.favorisRepository.findFavorisByUserEmail(emailUser);
+        
+        if (favoris != null) {
+            for (Artist artist : favoris.getArtists()) {
+                artist.setFavoris(true);
+            }
+            for (Album album : favoris.getAlbums()) {
+                album.setFavoris(true);
+            }
+            for (Title title : favoris.getTitles()) {
+                title.setFavoris(true);
+            }
+        }
+        
+        return favoris;
     }
     
     @PostMapping("/favoris")
@@ -103,13 +118,7 @@ public class FavorisController {
                     favTempo.getArtists().add(artist);
                 }
             }
-            System.out.println("gtg !");
             favoris = favTempo;
-            System.out.println("nbggrdcffd !");
-            
-            
-            
-            
             
         }
 

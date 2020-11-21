@@ -6,6 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
  * Entité Auteur persistente en base de données.
@@ -31,6 +34,14 @@ public class User {
     
     @Column (name = "avatar")
     private String avatar;
+    
+    @JsonInclude()
+    @Transient
+    private boolean isAdmin = false;
+    
+    @JsonInclude()
+    @Transient
+    private String token = "";
 
     public String getEmail() {
         return email;
@@ -62,6 +73,22 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
 }

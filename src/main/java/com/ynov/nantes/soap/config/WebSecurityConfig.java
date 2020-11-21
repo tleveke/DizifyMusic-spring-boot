@@ -52,7 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   protected void configure(HttpSecurity httpSecurity) throws Exception {
     httpSecurity.csrf().disable()
         // ne pas authentifier cette demande particulière
-        .authorizeRequests().antMatchers("/authenticate").permitAll().
+        .authorizeRequests().antMatchers("/authenticate","/authenticate/signup").permitAll().
         // Toutes les autres si hehe
         anyRequest().authenticated().and().
         // on s'assure que nous utilisons une session sans état; la session ne sera pas utilisée pour
