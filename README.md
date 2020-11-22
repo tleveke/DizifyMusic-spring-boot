@@ -5,7 +5,7 @@
 ### Base de données
 
 - Modifier le application.properties dans le dossier src/main/resources/ avec les identifiants nécessaires pour que le serveur se connecte à votre serveur de base de données
-- Préalabelement créé un database dizifymusic puis importer le fichier bddDizify.sql pour le jeu de données
+- Préalablement créé une database dizifymusic puis importer le fichier bddDizify.sql pour le jeu de données
 
 ### Installation
 
