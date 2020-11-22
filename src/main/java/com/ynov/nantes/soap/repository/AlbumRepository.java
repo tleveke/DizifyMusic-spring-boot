@@ -1,11 +1,14 @@
 package com.ynov.nantes.soap.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.util.Assert;
 
 import com.ynov.nantes.soap.entity.Album;
+import com.ynov.nantes.soap.entity.Title;
 
 /**
  * Extension du Repository CRUD pour ajouter une méthode métier.
@@ -20,4 +23,5 @@ public interface AlbumRepository extends JpaRepository<Album, Integer> {
 
     Album findAlbumById(int id);
     Album findAlbumByEntitled(String entitled);
+    List<Album> findAlbumsByArtistId(int id);
 }

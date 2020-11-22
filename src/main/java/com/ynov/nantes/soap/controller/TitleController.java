@@ -87,6 +87,10 @@ public class TitleController {
     List<Title> getTitleByAlbum(@PathVariable int id) {
       return this.titleRepository.findTitleByAlbumId(id);
     }
+    @GetMapping("/titles/artists/{id}")
+    List<Title> getTitlesArtistId(@PathVariable int id) {
+      return this.titleRepository.findTitlesByArtistId(id);
+    }
     
     @GetMapping("/title/{id}")
     Title getTitleById(@PathVariable int id) {

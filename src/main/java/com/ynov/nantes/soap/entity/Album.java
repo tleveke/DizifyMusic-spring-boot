@@ -1,5 +1,6 @@
 package com.ynov.nantes.soap.entity;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -50,6 +51,10 @@ public class Album {
     @JsonInclude()
     @Transient
     private int dureeTotale;
+    
+    @JsonInclude()
+    @Transient
+    private List<Title> listTitles;
     
     @JsonInclude()
     @Transient
@@ -109,6 +114,14 @@ public class Album {
 
     public void setFavoris(boolean favoris) {
         this.favoris = favoris;
+    }
+
+    public List<Title> getListTitles() {
+        return listTitles;
+    }
+
+    public void setListTitles(List<Title> listTitles) {
+        this.listTitles = listTitles;
     }
 
     

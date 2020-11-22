@@ -24,4 +24,5 @@ public interface TitleRepository extends JpaRepository<Title, Integer> {
     Title findTitleById(int id);
     Title findTitleByDesignation(String designation);
     List<Title> findTitleByAlbumId(int id);
+    List<Title> findTitlesByArtistId(int id);
 }

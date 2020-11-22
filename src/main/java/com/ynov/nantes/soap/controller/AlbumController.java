@@ -1,6 +1,8 @@
 package com.ynov.nantes.soap.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,6 +37,47 @@ public class AlbumController {
     List<Album> getAlbums() {
       
       List<Album> albums = this.albumRepository.findAll();
+
+      for (Album album : albums) {
+          album.setDureeTotale(getDureeAlbums(album.getId()));
+      }
+        
+      return albums;
+    }
+    
+    @GetMapping("/albums/accueil")
+    List<Album> getAlbumsAccueil() {
+      
+        List<Album>  albums =  this.albumRepository.findAll();
+        List<Album> albums_accueil = new ArrayList<Album>();
+        
+        Random rand = new Random();
+        
+        int boucle = 3;
+        
+        if (boucle > albums.size()) {
+            boucle = albums.size();
+        }
+        
+        for (int i = 0; i < boucle ; i++) {
+            int random = rand.nextInt(albums.size());
+            
+            while (albums_accueil.contains(albums.get(random))) {
+                random = rand.nextInt(albums.size());
+            }
+            
+            albums_accueil.add(albums.get(random));   
+        }
+        
+        return albums_accueil;
+        
+        //return this.titleRepository.findAll();
+    }
+    
+    @GetMapping("/albums/artists/{id}")
+    List<Album> getAlbumsArtsitsId(@PathVariable int id) {
+      
+      List<Album> albums = this.albumRepository.findAlbumsByArtistId(id);
 
       for (Album album : albums) {
           album.setDureeTotale(getDureeAlbums(album.getId()));

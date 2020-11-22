@@ -1,5 +1,6 @@
 package com.ynov.nantes.soap.entity;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -44,6 +45,14 @@ public class Artist {
 
     @JsonInclude()
     @Transient
+    private List<Title> listTitles;
+    
+    @JsonInclude()
+    @Transient
+    private List<Album> listAlbums;
+    
+    @JsonInclude()
+    @Transient
     private boolean favoris = false;
 
     public int getId() {
@@ -84,6 +93,22 @@ public class Artist {
 
     public void setFavoris(boolean favoris) {
         this.favoris = favoris;
+    }
+
+    public List<Title> getListTitles() {
+        return listTitles;
+    }
+
+    public void setListTitles(List<Title> listTitles) {
+        this.listTitles = listTitles;
+    }
+
+    public List<Album> getListAlbums() {
+        return listAlbums;
+    }
+
+    public void setListAlbums(List<Album> listAlbums) {
+        this.listAlbums = listAlbums;
     }
 
 
